@@ -35,6 +35,7 @@
 		</LinearLayout>
 
 * java代码：
+
 ![java](screen/usage.png)	
 
 * 属性说明：
