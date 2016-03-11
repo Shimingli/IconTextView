@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                tools:context="com.weiteng.demo.MainActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingBottom="@dimen/activity_vertical_margin"
+              android:paddingLeft="@dimen/activity_horizontal_margin"
+              android:paddingRight="@dimen/activity_horizontal_margin"
+              android:paddingTop="@dimen/activity_vertical_margin"
+              tools:context="com.weiteng.demo.MainActivity">
 
     <com.weiteng.widget.IconTextView
         android:id="@+id/icon_tv"
@@ -16,29 +17,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:padding="4dp"
-        app:itv_gap="4dp"
         app:itv_direction="TOP"
-        app:itv_icon="@drawable/star_on"
-        app:itv_iconHeight="20dp"
-        app:itv_iconWidth="20dp"
-        app:itv_textSize="13sp"
-        app:itv_text="新闻" />
+        app:itv_gap="6dp"
+        app:itv_icon="@mipmap/icon_news"
+        app:itv_text="新闻"
+        app:itv_textSize="13sp"/>
 
     <com.weiteng.widget.IconTextView
         android:id="@+id/icon_tv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
         android:padding="4dp"
-        android:layout_toRightOf="@id/icon_tv"
-        app:itv_gap="4dp"
         app:itv_direction="BOTTOM"
-        app:itv_icon="@drawable/star_on"
-        app:itv_iconHeight="20dp"
-        app:itv_iconWidth="20dp"
-        app:itv_textSize="13sp"
-        app:itv_text="体育" />
+        app:itv_gap="6dp"
+        app:itv_icon="@mipmap/icon_resource"
+        app:itv_text="能源"
+        app:itv_textSize="13sp"/>
 
     <com.weiteng.widget.IconTextView
         android:id="@+id/icon_tv3"
@@ -46,30 +41,30 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:padding="4dp"
-        android:layout_below="@id/icon_tv"
-        app:itv_gap="4dp"
         app:itv_direction="LEFT"
-        app:itv_icon="@drawable/star_on"
-        app:itv_iconHeight="20dp"
-        app:itv_iconWidth="20dp"
-        app:itv_textSize="13sp"
-        app:itv_text="音乐" />
+        app:itv_gap="6dp"
+        app:itv_icon="@mipmap/icon_video"
+        app:itv_text="视频"
+        app:itv_textSize="13sp"/>
 
     <com.weiteng.widget.IconTextView
         android:id="@+id/icon_tv4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/icon_tv"
         android:padding="4dp"
-        android:layout_toRightOf="@id/icon_tv3"
-        app:itv_gap="4dp"
         app:itv_direction="RIGHT"
-        app:itv_icon="@drawable/star_on"
-        app:itv_iconHeight="20dp"
-        app:itv_iconWidth="20dp"
-        app:itv_textSize="13sp"
-        app:itv_text="视频" />
+        app:itv_gap="6dp"
+        app:itv_icon="@mipmap/icon_restore"
+        app:itv_text="存储"
+        app:itv_textSize="13sp"/>
 
-</RelativeLayout>
+    <com.weiteng.widget.IconTextView
+        android:id="@+id/icon_tv5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="4dp"
+        app:itv_textSize="13sp"/>
+
+</LinearLayout>

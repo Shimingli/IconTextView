@@ -17,11 +17,23 @@ public class MainActivity extends AppCompatActivity implements IconTextView.OnIc
         IconTextView iconTextView2 = (IconTextView) findViewById(R.id.icon_tv2);
         IconTextView iconTextView3 = (IconTextView) findViewById(R.id.icon_tv3);
         IconTextView iconTextView4 = (IconTextView) findViewById(R.id.icon_tv4);
+        IconTextView iconTextView = (IconTextView) findViewById(R.id.icon_tv5);
 
         iconTextView1.setOnIconTextClickListener(this);
         iconTextView2.setOnIconTextClickListener(this);
         iconTextView3.setOnIconTextClickListener(this);
         iconTextView4.setOnIconTextClickListener(this);
+
+        iconTextView.setDirection(IconTextView.Direction.LEFT);
+        iconTextView.setDrawable(getResources().getDrawable(R.mipmap.ic_launcher));
+        iconTextView.setText("Android");
+        iconTextView.setOnIconTextClickListener(new IconTextView.OnIconTextClickListener() {
+
+            @Override
+            public void onIconTextClick(IconTextView view) {
+
+            }
+        });
     }
 
     @Override

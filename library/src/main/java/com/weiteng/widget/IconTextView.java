@@ -6,6 +6,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.MotionEvent;
@@ -43,7 +44,7 @@ public class IconTextView extends View {
     private boolean inTapRegion;
     private int mStartX, mStartY;
 
-    enum Direction {
+    public enum Direction {
         TOP(0), BOTTOM(1), LEFT(2), RIGHT(3);
 
         int mValue;
@@ -54,7 +55,7 @@ public class IconTextView extends View {
     }
 
     public interface OnIconTextClickListener {
-        void onIconTextClick(IconTextView iview);
+        void onIconTextClick(IconTextView view);
     }
 
     private OnIconTextClickListener mOnIconTextClickListener;
@@ -76,10 +77,8 @@ public class IconTextView extends View {
         mTextColor = ta.getColor(R.styleable.IconTextView_itv_textColor, 0xff0099cc);
         mGap = ta.getDimensionPixelSize(R.styleable.IconTextView_itv_gap,
                 (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, context.getResources().getDisplayMetrics()));
-        mIconWidth = ta.getDimensionPixelSize(R.styleable.IconTextView_itv_iconWidth,
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 50, context.getResources().getDisplayMetrics()));
-        mIconHeight = ta.getDimensionPixelSize(R.styleable.IconTextView_itv_iconHeight,
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_PX, 50, context.getResources().getDisplayMetrics()));
+        mIconWidth = ta.getDimensionPixelSize(R.styleable.IconTextView_itv_iconWidth, 0);
+        mIconHeight = ta.getDimensionPixelSize(R.styleable.IconTextView_itv_iconHeight, 0);
 
         mDrawable = ta.getDrawable(R.styleable.IconTextView_itv_icon);
         mDirection = Direction.values()[ta.getInt(R.styleable.IconTextView_itv_direction, 0)];
@@ -93,7 +92,6 @@ public class IconTextView extends View {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setColor(mTextColor);
         mPaint.setTextSize(mTextSize);
-        mPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
 
         // 计算出最小的滑动距离
         int touchSlop;
@@ -106,6 +104,13 @@ public class IconTextView extends View {
         mTouchSlop = touchSlop * touchSlop;
         inTapRegion = false;
 
+        fixDrawableSize();
+    }
+
+    private void fixDrawableSize() {
+        if (mDrawable == null) {
+            return;
+        }
         // 修正给定图标的宽度高度值
         int drawableWidth = mDrawable.getIntrinsicWidth();
         int drawableHeight = mDrawable.getIntrinsicHeight();
@@ -142,6 +147,11 @@ public class IconTextView extends View {
     }
 
     public void setText(String text) {
+        if (TextUtils.isEmpty(mText)) {
+            mText = text;
+            return;
+        }
+
         if (!mText.equals(text)) {
             mText = text;
             requestLayout();
@@ -180,6 +190,7 @@ public class IconTextView extends View {
     public void setDrawable(Drawable drawable) {
         if (mDrawable != drawable) {
             mDrawable = drawable;
+            fixDrawableSize();
             requestLayout();
             invalidate();
         }
@@ -222,6 +233,8 @@ public class IconTextView extends View {
         mCacheBound.top = getPaddingTop();
         mCacheBound.right = getPaddingLeft() + width;
         mCacheBound.bottom = getPaddingTop() + height;
+
+        mPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
 
         composeDrawableBound();
         setMeasuredDimension(width + getPaddingLeft() + getPaddingRight(), height + getPaddingBottom() + getPaddingTop());
